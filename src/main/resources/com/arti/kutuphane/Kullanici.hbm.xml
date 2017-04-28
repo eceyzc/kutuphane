@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28.Nis.2017 16:11:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arti.kutuphane.Kullanici" table="kullanici" catalog="kutuphane" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="kullaniciAdi" type="string">
+            <column name="kullanici_adi" length="15" not-null="true" />
+        </property>
+        <property name="sifre" type="string">
+            <column name="sifre" length="15" not-null="true" />
+        </property>
+        <property name="eposta" type="string">
+            <column name="eposta" length="30" not-null="true" />
+        </property>
+        <property name="isim" type="string">
+            <column name="isim" length="30" not-null="true" />
+        </property>
+        <property name="soyisim" type="string">
+            <column name="soyisim" length="45" not-null="true" />
+        </property>
+        <property name="tur" type="string">
+            <column name="tur" length="10" not-null="true" />
+        </property>
+        <property name="olusturulmaTarihi" type="timestamp">
+            <column name="olusturulma_tarihi" length="19" not-null="true" />
+        </property>
+        <property name="durum" type="boolean">
+            <column name="durum" not-null="true" />
+        </property>
+        <set name="istekListesisFor&#221;stekteBulunan" table="istek_listesi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="istekte_bulunan" not-null="true" />
+            </key>
+            <one-to-many class="com.arti.kutuphane.&#221;stekListesi" />
+        </set>
+        <set name="oduncListesis" table="odunc_listesi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="kullanici_id" not-null="true" />
+            </key>
+            <one-to-many class="com.arti.kutuphane.OduncListesi" />
+        </set>
+        <set name="istekListesisFor&#221;slemYapan" table="istek_listesi" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="islem_yapan" not-null="true" />
+            </key>
+            <one-to-many class="com.arti.kutuphane.&#221;stekListesi" />
+        </set>
+    </class>
+</hibernate-mapping>

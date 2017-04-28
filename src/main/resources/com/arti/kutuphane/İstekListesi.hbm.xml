@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28.Nis.2017 16:11:40 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.arti.kutuphane.&#221;stekListesi" table="istek_listesi" catalog="kutuphane" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="kullaniciBy&#221;stekteBulunan" class="com.arti.kutuphane.Kullanici" fetch="select">
+            <column name="istekte_bulunan" not-null="true" />
+        </many-to-one>
+        <many-to-one name="kullaniciBy&#221;slemYapan" class="com.arti.kutuphane.Kullanici" fetch="select">
+            <column name="islem_yapan" not-null="true" />
+        </many-to-one>
+        <property name="istekTarihi" type="timestamp">
+            <column name="istek_tarihi" length="19" not-null="true" />
+        </property>
+        <property name="onayDurumu" type="boolean">
+            <column name="onay_durumu" not-null="true" />
+        </property>
+        <property name="islemTarihi" type="timestamp">
+            <column name="islem_tarihi" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
